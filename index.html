@@ -1,0 +1,116 @@
+<div class="app-wrap">
+    <div class="bg-blur"></div>
+    
+    <header class="hero">
+        <h1>Mission<span class="logo-accent">Hub</span></h1>
+        <nav class="tab-nav">
+            <button id="tab-add" class="tab-btn active" onclick="switchPage('add-page')">追加登録</button>
+            <button id="tab-list" class="tab-btn" onclick="switchPage('list-page')">進捗管理</button>
+        </nav>
+    </header>
+
+    <main id="add-page" class="page active">
+        <section class="glass-card">
+            <div class="card-header">
+                <label>新規タスク登録</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="nameInput" placeholder="名前やタスクを入力...">
+                <div class="select-row">
+                    
+                        <select id="categorySelect">
+    <option>1年</option>
+    <option>2年</option>
+    <option>3年</option>
+    <option>4年</option>
+    <option>院生</option>
+    <option>先生</option> <option>その他</option> </select>
+                    <select id="initialStatusSelect">
+                        <option value="un-1">まや・こうだい</option>
+                        <option value="un-2">ゆうな・まさや</option>
+                    </select>
+                </div>
+                <button id="addBtn" class="premium-btn">リストに追加する</button>
+            </div>
+        </section>
+        
+        <div class="glass-card stat-card">
+            <label>全体の進捗状況</label>
+            <div class="stat-content">
+                <h2 id="progressPercent">0%</h2>
+                <div class="p-track-outer">
+                    <div id="progressBar" class="p-fill-glow"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="list-page" class="page">
+        <div class="glass-toolbar">
+            <input type="text" id="searchInput" placeholder="🔍 名前で検索...">
+            <div class="filter-group">
+                <select id="filterCategory">
+    <option value="all">全カテゴリー</option>
+    <option>1年</option>
+    <option>2年</option>
+    <option>3年</option>
+    <option>4年</option>
+    <option>院生</option>
+    <option>先生</option> <option>その他</option> </select>
+                <select id="filterStatus">
+                    <option value="all">全区分</option>
+                    <option value="1">まや・こうだい</option>
+                    <option value="2">ゆうな・まさや</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="vertical-board">
+            <section class="board-section">
+                <div class="section-tag pending">未完了</div>
+                <div class="inner-label">まや・こうだい</div>
+                <ul id="list-un-1" class="task-list"></ul>
+                
+                <div class="inner-label">ゆうな・まさや</div>
+                <ul id="list-un-2" class="task-list"></ul>
+            </section>
+
+            <div class="divider"></div>
+
+            <section class="board-section">
+                <div class="section-tag done">完了 </div>
+                <div class="inner-label"> まや・こうだい</div>
+                <ul id="list-cp-1" class="task-list finished"></ul>
+                
+                <div class="inner-label">ゆうな・まさや</div>
+                <ul id="list-cp-2" class="task-list finished"></ul>
+            </section>
+        </div>
+        
+        <button id="clearAll" class="text-link-btn">データを全消去する</button>
+    </main>
+
+    <div id="bulkActionWrapper" class="floating-container">
+        <button id="bulkDoneBtn" class="fab-button">
+            <div class="fab-content">
+                <span class="fab-icon">✓</span>
+                <span class="fab-label">一括完了</span>
+            </div>
+        </button>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script src="script.js"></script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MissionHub">
+
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon.png">
+
+<link rel="icon" type="image/png" href="icon.png">
+
+<meta name="apple-mobile-web-app-title" content="MissionHub">
