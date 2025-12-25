@@ -1,0 +1,108 @@
+:root {
+  --primary: #00d2ff;
+  --primary-dark: #00a8e8;
+  --bg-gradient: linear-gradient(135deg, #f5faff 0%, #e0f2fe 100%);
+  --glass: rgba(255, 255, 255, 0.7);
+  --text-main: #2d3436;
+  --text-sub: #94a3b8;
+}
+
+body {
+  background: var(--bg-gradient);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  margin: 0; padding: 20px; min-height: 100vh; overflow-x: hidden;
+}
+
+.bg-blur {
+  position: fixed; top: -10%; left: -10%; width: 50%; height: 50%;
+  background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, transparent 70%);
+  filter: blur(60px); z-index: -1;
+}
+
+.app-wrap { max-width: 600px; margin: 0 auto; padding-bottom: 120px; position: relative; }
+
+/* タブナビ */
+.hero h1 { font-size: 28px; text-align: center; font-weight: 800; margin-bottom: 20px; }
+.logo-accent { color: var(--primary); }
+.tab-nav {
+  display: flex; background: rgba(255,255,255,0.4); padding: 5px; 
+  border-radius: 20px; backdrop-filter: blur(10px); margin-bottom: 25px;
+}
+.tab-btn {
+  flex: 1; border: none; padding: 14px; border-radius: 16px; cursor: pointer;
+  background: transparent; color: var(--text-sub); font-weight: 700; transition: 0.3s;
+}
+.tab-btn.active { background: white; color: var(--primary-dark); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+
+/* ページ制御 */
+.page { display: none; animation: fadeIn 0.4s ease forwards; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* カード・入力 */
+.glass-card {
+  background: var(--glass); backdrop-filter: blur(15px); border-radius: 28px;
+  padding: 25px; border: 1px solid rgba(255,255,255,0.5); margin-bottom: 20px;
+}
+.input-group { display: flex; flex-direction: column; gap: 15px; }
+.select-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+input, select { background: white; border: 1.5px solid #edf2f7; padding: 15px; border-radius: 16px; font-size: 16px; outline: none; }
+.premium-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, #3a86ff 100%);
+  color: white; border: none; border-radius: 16px; font-weight: 800; font-size: 18px;
+  height: 60px; cursor: pointer; box-shadow: 0 10px 20px rgba(58,134,255,0.2);
+}
+
+/* 追従ボタン (Managementページのみ表示) */
+.floating-container { position: fixed; bottom: 35px; right: 25px; z-index: 2000; display: none; }
+.fab-button {
+  width: 85px; height: 85px; border-radius: 30px; background: white; border: none; cursor: pointer;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.fab-icon { font-size: 28px; color: var(--primary); font-weight: bold; }
+.fab-label { font-size: 10px; font-weight: 800; color: var(--text-sub); margin-top: 2px; }
+
+/* リストアイテム */
+.task-list { list-style: none; padding: 0; margin: 0; }
+li {
+  background: white; border-radius: 20px; padding: 18px; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-left: 6px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+.task-check { width: 26px; height: 26px; accent-color: var(--primary); cursor: pointer; margin-right: 15px; }
+.name-text { font-weight: 700; font-size: 17px; }
+.tag { font-size: 10px; background: #eef9ff; color: var(--primary-dark); padding: 4px 10px; border-radius: 8px; font-weight: 800; }
+.delete-btn { background: #fff5f5; color: #ff7675; border: none; padding: 10px 16px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+/* 検索・仕切り */
+.glass-toolbar { margin-bottom: 25px; }
+.filter-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.divider { border-top: 2px dashed #d1d8e0; margin: 25px 0; }
+.section-tag { font-size: 11px; font-weight: 800; padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+.pending { background: #e0f2fe; color: var(--primary-dark); }
+.done { background: #f1f5f9; color: #94a3b8; }
+.inner-label { font-size: 10px; color: #cbd5e1; font-weight: 800; margin: 15px 0 10px; }
+
+/* 進捗バー */
+.p-track-outer { background: #f1f5f9; height: 12px; border-radius: 10px; overflow: hidden; margin-top: 15px; }
+.p-fill-glow { height: 100%; background: linear-gradient(90deg, var(--primary), #3a86ff); transition: 1s ease; width: 0%; }
+.text-link-btn { background: none; border: none; color: #b2bec3; text-decoration: underline; width: 100%; margin-top: 40px; cursor: pointer; }
+/* style.css に追加 */
+body {
+    /* 文字や画像を長押しで選択できないようにする（誤操作防止） */
+    -webkit-user-select: none;
+    user-select: none;
+    
+    /* タップした時の青いハイライトを消す */
+    -webkit-tap-highlight-color: transparent;
+    
+    /* スクロールを滑らかにする */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 入力欄だけは文字入力できるように戻す */
+input, select {
+    -webkit-user-select: text;
+    user-select: text;
+}
